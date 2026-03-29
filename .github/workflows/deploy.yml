@@ -1,0 +1,14 @@
+name: Hitman Auto Deploy
+on: [push]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Vercel CLI
+        run: npm install --global vercel
+      - name: Deploy to Vercel
+        run: vercel --token ${{ secrets.VERCEL_TOKEN }} --prod --confirm --yes
+        env:
+          VERCEL_ORG_ID: "team_jasser" # هذا افتراضي لـ Vercel
+          VERCEL_PROJECT_ID: "hitman-project"
